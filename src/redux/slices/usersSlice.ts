@@ -1,20 +1,26 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { RootState } from "./../store";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const options = {
-	method: "GET",
-	url: "https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users",
-	params: { __dynamic: "true" },
-	headers: { "Content-Type": "application/json", Prefer: "code=200, example=pr" },
-};
-export const getUsersData = createAsyncThunk("@@get-users-data", async () => {
-	const data = axios.request(options);
+export const getUsersData = createAsyncThunk("@@get-users-data", (params) => {
+	const data = axios.get(
+		"https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users",
+		{
+			params: { __example: params, __dynamic: "true" },
+		}
+	);
+
 	return data;
 });
 
-const initialState = {
-	status: "loading",
+interface IUsersState {
+	list: [];
+	status: string;
+}
+
+const initialState: IUsersState = {
 	list: [],
+	status: "loading",
 };
 
 const usersSlice = createSlice({
@@ -24,19 +30,21 @@ const usersSlice = createSlice({
 	extraReducers: (builder) =>
 		builder
 			.addCase(getUsersData.pending, (state) => {
-				state.list = [];
 				state.status = "loading";
+				state.list = [];
 			})
 			.addCase(getUsersData.rejected, (state) => {
-				state.list = [];
 				state.status = "rejected";
+				state.list = [];
 			})
 			.addCase(getUsersData.fulfilled, (state, action) => {
-				state.list = action.payload;
 				state.status = "received";
+				state.list = action.payload.data;
 			}),
 });
 
 export const {} = usersSlice.actions;
 
 export default usersSlice.reducer;
+
+export const selectUserList = (state: RootState) => state.users.list;

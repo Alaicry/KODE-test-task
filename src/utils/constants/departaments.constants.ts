@@ -1,6 +1,5 @@
-// export const positions: string[] = ["Все"];
-export const optionsMap = {
-	Все: { value: "", label: "Все" },
+export const departamentsMap = {
+	Все: { value: "all", label: "Все" },
 	Designers: { value: "design", label: "Designers" },
 	Analysts: { value: "analytics", label: "Analysts" },
 	Managers: { value: "management", label: "Managers" },
@@ -8,4 +7,4 @@ export const optionsMap = {
 	Android: { value: "android", label: "Android" },
 };
 
-export const options = Object.values(optionsMap);
+export const departaments = Object.values(departamentsMap);
