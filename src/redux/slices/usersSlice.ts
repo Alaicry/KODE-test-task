@@ -1,20 +1,22 @@
-import { RootState } from "./../store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./../store";
+import { User } from "../../types/user";
 import axios from "axios";
 
-export const getUsersData = createAsyncThunk("@@get-users-data", (params) => {
-	const data = axios.get(
-		"https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users",
-		{
-			params: { __example: params, __dynamic: "true" },
-		}
-	);
-
-	return data;
-});
+export const getUsersData = createAsyncThunk<User[], string>(
+	"@@users/getUsersData",
+	async (params: string) => {
+		const data = await axios
+			.get("https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users", {
+				params: { __example: params, __dynamic: "true" },
+			})
+			.then<User[]>((res) => res.data.items);
+		return data;
+	}
+);
 
 interface IUsersState {
-	list: [];
+	list: User[];
 	status: string;
 }
 
@@ -39,7 +41,7 @@ const usersSlice = createSlice({
 			})
 			.addCase(getUsersData.fulfilled, (state, action) => {
 				state.status = "received";
-				state.list = action.payload.data;
+				state.list = action.payload;
 			}),
 });
 
