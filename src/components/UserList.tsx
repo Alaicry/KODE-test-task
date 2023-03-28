@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectFilterState } from "../redux/slices/filterSlice";
-import { getUsersData, selectUserList } from "../redux/slices/usersSlice";
-import { useAppDispatch } from "../redux/store";
-import User from "./User";
+import { getUsersData, selectUsers, selectUserState } from "../redux/slices/usersSlice";
+import { RootState, useAppDispatch } from "../redux/store";
+import UserCard from "./UserCard";
 
 const UserList: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { departamentName } = useSelector(selectFilterState);
-	const users = useSelector(selectUserList);
+	// const { list: users, status } = useSelector(selectUserState);
+	const { searchValue } = useSelector(selectFilterState);
+	const users = useSelector((state: RootState) => selectUsers(state, { searchValue }));
 
 	React.useEffect(() => {
 		dispatch(getUsersData(departamentName));
@@ -16,7 +18,10 @@ const UserList: React.FC = () => {
 
 	return (
 		<div className="users">
-			<ul className="list">{users && users.map((user) => <User key={user.id} {...user} />)}</ul>
+			<ul className="list users__list">
+				{users && users.map((user) => <UserCard key={user.id} {...user} />)}
+				{/* {status === "rejected" && <h1>Ошибка</h1>} */}
+			</ul>
 		</div>
 	);
 };

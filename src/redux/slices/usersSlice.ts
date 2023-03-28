@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./../store";
-import { User } from "../../types/user";
 import axios from "axios";
+import { User } from "../../types/user";
+import { RootState } from "./../store";
 
 export const getUsersData = createAsyncThunk<User[], string>(
 	"@@users/getUsersData",
 	async (params: string) => {
 		const data = await axios
 			.get("https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users", {
-				params: { __example: params, __dynamic: "true" },
+				params: { __example: params },
 			})
 			.then<User[]>((res) => res.data.items);
 		return data;
@@ -49,4 +49,12 @@ export const {} = usersSlice.actions;
 
 export default usersSlice.reducer;
 
-export const selectUserList = (state: RootState) => state.users.list;
+export const selectUserState = (state: RootState) => state.users;
+
+export const selectUsers = (state: RootState, { searchValue = "" }) => {
+	return state.users.list.filter(
+		(user) =>
+			user.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+			user.lastName.toLowerCase().includes(searchValue.toLowerCase())
+	);
+};

@@ -1,19 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux/es/exports";
-import Departaments from "./components/Departaments";
 
-import Header from "./components/Header";
-import Search from "./components/Search";
-import UserList from "./components/UserList";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import UserPage from "./pages/UserPage";
 
-const App = () => {
+const App: React.FC = () => {
 	return (
-		<React.Fragment>
-			<Header />
-			<Search />
-			<Departaments />
-			<UserList />
-		</React.Fragment>
+		<Routes>
+			<Route path="/" element={<HomePage />} />
+			<Route path="/user/:id" element={<UserPage />} />
+		</Routes>
 	);
 };
 
