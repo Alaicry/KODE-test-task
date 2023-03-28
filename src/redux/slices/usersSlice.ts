@@ -49,7 +49,7 @@ export const {} = usersSlice.actions;
 
 export default usersSlice.reducer;
 
-export const selectUserState = (state: RootState) => state.users;
+export const selectStatus = (state: RootState) => state.users.status;
 
 export const selectUsers = (state: RootState, { searchValue = "" }) => {
 	return state.users.list.filter(

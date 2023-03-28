@@ -1,9 +1,8 @@
 import React from "react";
-import { BsSearch, BsListUl, BsXLg } from "react-icons/bs";
+import { BsSearch, BsListUl } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { selectFilterState, setSearchValue } from "../redux/slices/filterSlice";
 import { useAppDispatch } from "../redux/store";
-
 
 const Search: React.FC = () => {
 	const dispatch = useAppDispatch();
