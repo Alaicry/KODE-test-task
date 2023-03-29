@@ -1,20 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { User } from "../types/user";
 
-type UserCardProps = Omit<User, "department" | "birthday" | "phone">;
+// type UserCardProps = Omit<User, "department" | "birthday" | "phone">;
 
-const UserCard: React.FC<UserCardProps> = ({
+const UserCard: React.FC<User> = ({
 	id,
 	avatarUrl,
 	firstName,
 	lastName,
 	userTag,
 	position,
+	birthday,
+	department,
+	phone,
 }) => {
+	const profileData = {
+		id,
+		avatarUrl,
+		firstName,
+		lastName,
+		userTag,
+		position,
+		birthday,
+		department,
+		phone,
+	};
+
 	return (
 		<li className="list__item user">
-			<Link key={id} to={`/user/${id}`} className="user__link">
+			<Link key={id} to={`/user/${id}`} state={profileData} className="user__link">
 				<img src={avatarUrl} alt={avatarUrl} className="user__avatar" />
 				<div className="user__content">
 					<h3 className="user__name">{`${firstName} ${lastName}`}</h3>
