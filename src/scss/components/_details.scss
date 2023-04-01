@@ -38,4 +38,34 @@
 	&__bottom {
 		padding-top: 27px;
 	}
+
+	&__content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 20px;
+		color: #050510;
+		&:first-child {
+			margin-bottom: 20px;
+		}
+	}
+	&__birthday {
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon {
+		margin-right: 14px;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__year {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 20px;
+		color: #97979b;
+	}
 }
