@@ -51,10 +51,21 @@ export default usersSlice.reducer;
 
 export const selectStatus = (state: RootState) => state.users.status;
 
-export const selectUsers = (state: RootState, { searchValue = "" }) => {
-	return state.users.list.filter(
-		(user) =>
-			user.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
-			user.lastName.toLowerCase().includes(searchValue.toLowerCase())
-	);
+export const selectUsers = (state: RootState, { searchValue = "", sortType = "" }) => {
+	if (sortType === "byBirthday")
+		return state.users.list
+			.filter(
+				(user) =>
+					user.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+					user.lastName.toLowerCase().includes(searchValue.toLowerCase())
+			)
+			.sort((a, b) => new Date(b.birthday).valueOf() - new Date(a.birthday).valueOf());
+	else if (sortType === "byAlphabet")
+		return state.users.list
+			.filter(
+				(user) =>
+					user.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+					user.lastName.toLowerCase().includes(searchValue.toLowerCase())
+			)
+			.sort((a, b) => a.firstName.localeCompare(b.firstName));
 };

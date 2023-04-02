@@ -9,9 +9,9 @@ import UserCard from "./UserCard";
 const UserList: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { departamentName } = useSelector(selectFilterState);
+	const { searchValue, sortType } = useSelector(selectFilterState);
 	const status = useSelector(selectStatus);
-	const { searchValue } = useSelector(selectFilterState);
-	const users = useSelector((state: RootState) => selectUsers(state, { searchValue }));
+	const users = useSelector((state: RootState) => selectUsers(state, { searchValue, sortType }));
 
 	React.useEffect(() => {
 		dispatch(getUsersData(departamentName));

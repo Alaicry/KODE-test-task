@@ -4,11 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface IFilterState {
 	departamentName: string;
 	searchValue: string;
+	sortType: string;
 }
 
 const initialState: IFilterState = {
 	departamentName: "all",
 	searchValue: "",
+	sortType: "byAlphabet",
 };
 
 const filterSlice = createSlice({
@@ -21,10 +23,13 @@ const filterSlice = createSlice({
 		setSearchValue: (state, action: PayloadAction<string>) => {
 			state.searchValue = action.payload;
 		},
+		setSortType: (state, action: PayloadAction<string>) => {
+			state.sortType = action.payload;
+		},
 	},
 });
 
-export const { setDepartamentName, setSearchValue } = filterSlice.actions;
+export const { setDepartamentName, setSearchValue, setSortType } = filterSlice.actions;
 
 export default filterSlice.reducer;
 
