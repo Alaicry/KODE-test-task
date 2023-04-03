@@ -10,7 +10,7 @@ interface IFilterState {
 const initialState: IFilterState = {
 	departamentName: "all",
 	searchValue: "",
-	sortType: "byAlphabet",
+	sortType: "",
 };
 
 const filterSlice = createSlice({

@@ -68,4 +68,10 @@ export const selectUsers = (state: RootState, { searchValue = "", sortType = "" 
 					user.lastName.toLowerCase().includes(searchValue.toLowerCase())
 			)
 			.sort((a, b) => a.firstName.localeCompare(b.firstName));
+	else
+		return state.users.list.filter(
+			(user) =>
+				user.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
+				user.lastName.toLowerCase().includes(searchValue.toLowerCase())
+		);
 };

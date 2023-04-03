@@ -10,6 +10,7 @@ const Search: React.FC = () => {
 	const { searchValue } = useSelector(selectFilterState);
 	const [modal, setModal] = React.useState(false);
 	const onVisibleModal = () => setModal(!modal);
+	const { sortType } = useSelector(selectFilterState);
 	return (
 		<React.Fragment>
 			<div className="search">
@@ -23,7 +24,14 @@ const Search: React.FC = () => {
 					value={searchValue}
 				/>
 				<BsSearch className="search__icon search__icon--search" />
-				<BsListUl className="search__icon search__icon--list" onClick={() => setModal(!modal)} />
+				<BsListUl
+					className={
+						sortType === "byAlphabet" || sortType === "byBirthday"
+							? "search__icon search__icon--list search__icon--fill"
+							: "search__icon search__icon--list"
+					}
+					onClick={() => setModal(!modal)}
+				/>
 			</div>
 			{modal && <Modal onVisibleModal={onVisibleModal} />}
 		</React.Fragment>
