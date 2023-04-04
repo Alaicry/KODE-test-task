@@ -1,9 +1,12 @@
 import React from "react";
+import Container from "./Container";
 
 const Header: React.FC = () => {
 	return (
 		<header className="header">
-			<h1 className="header__title">Поиск</h1>
+			<Container>
+				<h1 className="header__title">Поиск</h1>
+			</Container>
 		</header>
 	);
 };

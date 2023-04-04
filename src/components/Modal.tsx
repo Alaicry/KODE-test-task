@@ -16,36 +16,35 @@ const Modal: React.FC<ModalProps> = ({ onVisibleModal }) => {
 		dispatch(setSortType(event.target.value));
 
 	return (
-		<div className="modal">
-			<div className="modal__wrapper">
-				<div className="modal__top">
-					<h3 className="modal__title">Сортировка</h3>
-					<button className="modal__button button-reset" onClick={onVisibleModal}>
-						<VscClose />
-					</button>
-				</div>
-				<div className="modal__bottom">
-					<div className="modal__field">
+		<div className="modal modal--fixed modal--full">
+			<div className="modal__wrapper modal__wrapper--relative">
+				<h3 className="modal__title">Сортировка</h3>
+				<button
+					className="modal__button modal__button--absolute button-reset"
+					onClick={onVisibleModal}
+				>
+					<VscClose />
+				</button>
+				<div>
+					<div>
 						<input
 							type="radio"
 							name="sortType"
-							className="modal__input"
 							value="byAlphabet"
 							onChange={handleChange}
 							checked={data.sortType === "byAlphabet"}
 						/>
-						<label className="modal__label">По алфавиту</label>
+						<label>По алфавиту</label>
 					</div>
-					<div className="modal__field">
+					<div>
 						<input
 							type="radio"
 							name="sortType"
-							className="modal__input"
 							value="byBirthday"
 							onChange={handleChange}
 							checked={data.sortType === "byBirthday"}
 						/>
-						<label className="modal__label">По дню рождения</label>
+						<label>По дню рождения</label>
 					</div>
 				</div>
 			</div>

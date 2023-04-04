@@ -1,52 +1,46 @@
 .users {
+	padding: 20px 0;
 	&__list {
-		margin-top: 16px;
-	}
-}
-
-.list {
-	&__item {
-		&:not(:last-child) {
-			margin-bottom: 6px;
-		}
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
 	}
 }
 
 .user {
-	&__link {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-	}
+	display: flex;
+	align-items: center;
+	gap: 16px;
 	&__avatar {
 		width: 72px;
 		height: 72px;
 		border-radius: 50%;
 	}
 	&__name {
-		display: inline;
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 5px;
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 20px;
-		color: #050510;
+		color: $dark;
 	}
 	&__tag {
-		margin-left: 4px;
 		font-weight: 500;
 		font-size: 14px;
 		line-height: 18px;
-		color: #97979b;
+		color: $darkGrayish;
 	}
 	&__position {
-		font-weight: 400;
 		font-size: 13px;
 		line-height: 16px;
-		color: #55555c;
+		color: $veryDarkGrayish;
+		text-transform: capitalize;
 	}
 	&__birthday {
 		margin-left: auto;
 		font-size: 15px;
 		line-height: 20px;
-		color: #55555c;
+		color: $veryDarkGrayish;
 	}
 }

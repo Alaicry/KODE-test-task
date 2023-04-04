@@ -1,11 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "./scss/vendors/normalize";
+
+@import "./scss/abstracts/variables";
+
 @import "./scss/base/base";
+@import "./scss/base/common";
 
 @import "./scss/components/header";
 @import "./scss/components/search";
-@import "./scss/components/departaments";
+@import "./scss/components/sort";
 @import "./scss/components/users";
-@import "./scss/components/error";
-@import "./scss/components/details";
 @import "./scss/components/modal";

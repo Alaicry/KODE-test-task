@@ -3,11 +3,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import { FiStar, FiPhone } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { User } from "../types/user";
+import Container from "../components/Container";
 
 type UserDetails = Omit<User, "id" | "department">;
 
 const UserPage: React.FC = () => {
-	
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { avatarUrl, firstName, lastName, userTag, position, birthday, phone }: UserDetails =
@@ -50,19 +50,21 @@ const UserPage: React.FC = () => {
 				<p className="details__position">{position}</p>
 			</div>
 			<div className="details__bottom">
-				<div className="details__content">
-					<p className="details__birthday">
-						<FiStar className="details__icon" />
-						{birthdayDate}
-					</p>
-					<p className="details__year">{declineYears(userYearsOld)}</p>
-				</div>
-				<div className="details__content">
-					<p className="details__phone">
-						<FiPhone className="details__icon" />
-						{addMaskPhone(phone)}
-					</p>
-				</div>
+				<Container>
+					<div className="details__content">
+						<p className="details__birthday">
+							<FiStar className="details__icon" />
+							{birthdayDate}
+						</p>
+						<p className="details__year">{declineYears(userYearsOld)}</p>
+					</div>
+					<div className="details__content">
+						<p className="details__phone">
+							<FiPhone className="details__icon" />
+							{addMaskPhone(phone)}
+						</p>
+					</div>
+				</Container>
 			</div>
 		</section>
 	);

@@ -3,25 +3,26 @@ import { BsSearch, BsListUl } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { selectFilterState, setSearchValue } from "../redux/slices/filterSlice";
 import { useAppDispatch } from "../redux/store";
+import Container from "./Container";
 import Modal from "./Modal";
 
 const Search: React.FC = () => {
 	const dispatch = useAppDispatch();
-	const { searchValue } = useSelector(selectFilterState);
+	const { searchValue, sortType } = useSelector(selectFilterState);
 	const [modal, setModal] = React.useState(false);
 	const onVisibleModal = () => setModal(!modal);
-	const { sortType } = useSelector(selectFilterState);
+
 	return (
-		<React.Fragment>
-			<div className="search">
+		<section className="search">
+			<Container classNameFromProps="search__wrapper">
 				<input
 					type="search"
 					name="search"
+					autoComplete="off"
+					value={searchValue}
 					className="search__input"
 					placeholder="Введи имя, тег, почту..."
-					autoComplete="off"
 					onChange={(event) => dispatch(setSearchValue(event.target.value))}
-					value={searchValue}
 				/>
 				<BsSearch className="search__icon search__icon--search" />
 				<BsListUl
@@ -32,9 +33,9 @@ const Search: React.FC = () => {
 					}
 					onClick={() => setModal(!modal)}
 				/>
-			</div>
+			</Container>
 			{modal && <Modal onVisibleModal={onVisibleModal} />}
-		</React.Fragment>
+		</section>
 	);
 };
 
