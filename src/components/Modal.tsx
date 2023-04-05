@@ -25,27 +25,27 @@ const Modal: React.FC<ModalProps> = ({ onVisibleModal }) => {
 				>
 					<VscClose />
 				</button>
-				<div>
-					<div>
-						<input
-							type="radio"
-							name="sortType"
-							value="byAlphabet"
-							onChange={handleChange}
-							checked={data.sortType === "byAlphabet"}
-						/>
-						<label>По алфавиту</label>
-					</div>
-					<div>
-						<input
-							type="radio"
-							name="sortType"
-							value="byBirthday"
-							onChange={handleChange}
-							checked={data.sortType === "byBirthday"}
-						/>
-						<label>По дню рождения</label>
-					</div>
+				<div className="field">
+					<input
+						type="radio"
+						name="sortType"
+						value="byAlphabet"
+						className="field__input"
+						onChange={handleChange}
+						checked={data.sortType === "byAlphabet"}
+					/>
+					<label className="field__label">По алфавиту</label>
+				</div>
+				<div className="field">
+					<input
+						type="radio"
+						name="sortType"
+						value="byBirthday"
+						className="field__input"
+						onChange={handleChange}
+						checked={data.sortType === "byBirthday"}
+					/>
+					<label className="field__label">По дню рождения</label>
 				</div>
 			</div>
 		</div>

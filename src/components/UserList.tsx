@@ -14,10 +14,14 @@ const UserList: React.FC = () => {
 	return (
 		<section className="users">
 			<Container>
-				<ul className="users__list">
-					{users && users.map((user) => <UserCard key={user.id} {...user} />)}
-					{status === "rejected" && <Failure />}
-				</ul>
+				{users && (
+					<ul className="users__list">
+						{users.map((user) => (
+							<UserCard key={user.id} {...user} />
+						))}
+					</ul>
+				)}
+				{status === "rejected" && <Failure />}
 			</Container>
 		</section>
 	);

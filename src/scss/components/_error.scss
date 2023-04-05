@@ -1,0 +1,32 @@
+.error {
+	height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	&__wrapper {
+		width: 100vw;
+	}
+	&__icon {
+		margin-bottom: 8px;
+	}
+	&__title {
+		margin-bottom: 12px;
+		font-weight: 600;
+		font-size: 17px;
+		line-height: 22px;
+		color: $dark;
+	}
+	&__description {
+		font-size: 16px;
+		line-height: 20px;
+		color: $darkGrayish;
+		margin-bottom: 12px;
+	}
+	&__button {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 20px;
+		color: $lightBlue;
+	}
+}
